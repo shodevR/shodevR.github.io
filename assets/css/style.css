@@ -261,12 +261,30 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   top: 20px;
   right: 20px;
+  bottom: 90%;
   color: var(--black);
   font-size: 40px;
   transform: rotate(-45deg);
 }
 
-.card-text { font-family: var(--ff-poppins); }
+.repologo{
+  font-size: 22px;
+  justify-content: flex-end;
+}
+.repo-div {
+  display: flex;
+  width: 35%;
+  border: 25px solid rgb(0, 0, 0);
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.card-text{ font-family: var(--ff-poppins);
+  font-size: 85%;
+  
+  }
 
 .has-scrollbar {
   display: flex;

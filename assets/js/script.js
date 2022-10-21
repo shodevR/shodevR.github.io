@@ -24,11 +24,12 @@ const addEventOnElem = function (elem, type, callback) {
 
 const navbar = document.querySelector("[data-navbar]");
 const navLinks = document.querySelectorAll("[data-nav-link]");
-const navToggler = document.querySelector("[data-nav-toggler]");
+let navToggler = document.querySelector("[data-nav-toggler]");
 
-const toggleNavbar = function () {
-  navToggler.classList.toggle("active");
+let toggleNavbar = function () {
+  
 navbar.classList.toggle("active");
+navToggler.classList.toggle("active");
   
 }
 

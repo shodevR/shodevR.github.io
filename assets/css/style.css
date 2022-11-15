@@ -1031,7 +1031,25 @@ textarea.input-field {
 }
 
 
+.gitStats{
+  margin: auto;
+  display: flex;
+  justify-content:space-around;
+  margin-bottom: 100px;
+}
 
+#gitStats>div{
+  margin: auto;
+}
+
+@media (max-width: 1010px) {
+  #gitStats{
+    display: flex;
+    flex-direction: column;
+     justify-content: center;
+     margin-bottom: 100px;
+   }
+}
 
 
 /**

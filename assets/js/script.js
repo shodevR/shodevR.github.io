@@ -59,24 +59,3 @@ window.addEventListener("scroll", function () {
 });
 
 
-// calender
-
-GitHubCalendar(".calendar", "shodevR");
-
-// or enable responsive functionality:
-GitHubCalendar(".calendar", "shodevR", { responsive: true });
-
-// Use a proxy
-GitHubCalendar(".calendar", "shodevR", {
-   proxy (username) {
-     return fetch(`https://your-proxy.com/github?user=${shodevR}`)
-   }
-}).then(r => r.text())
-
-GitHubStatus(".stats", "shodevR", { responsive: true});
-GitHubStatus(".stats", "shodevR", { responsive: true });
-GitHubStatus(".stats", "shodevR", {
-  proxy (username) {
-    return fetch(`https://your-proxy.com/github?user=${shodevR}`)
-  }
-}).then(r => r.text())

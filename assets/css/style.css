@@ -1038,18 +1038,16 @@ textarea.input-field {
   margin-bottom: 100px;
 }
 
-#gitStats>div{
-  margin: auto;
-}
 
-@media (max-width: 1010px) {
+
+
   #gitStats{
     display: flex;
     flex-direction: column;
      justify-content: center;
      margin-bottom: 100px;
    }
-}
+
 
 
 /**

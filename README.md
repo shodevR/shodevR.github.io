@@ -1,2 +1,2 @@
 # MyPortfolio
-https://sahadevroy.netlify.app/
+https://shodevr.github.io/

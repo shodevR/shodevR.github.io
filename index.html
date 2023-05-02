@@ -41,35 +41,37 @@
 
       <a href="#" class="logo">Home</a>
 
-      <nav class="navbar active" data-navbar>
+      <nav class="navbar active"  id="nav-menu" data-navbar>
         <ul class="navbar-list">
 
           <li>
-            <a href="#home" class="navbar-link" data-nav-link>Home</a>
-          </li>
-
-         
-
-          <li>
-            <a href="#skills" class="navbar-link" data-nav-link>Skills</a>
+            <a href="#home"  id="home" class="navbar-link nav-link home" data-nav-link>Home</a>
           </li>
 
           <li>
-            <a href="#timeline" class="navbar-link" data-nav-link>Timeline</a>
+            <a href="#home" id="about" class="navbar-link nav-link about" data-nav-link>About</a>
           </li>
 
           <li>
-            <a href="#portfolio" class="navbar-link" data-nav-link>Projects</a>
+            <a href="#skills" id="skills" class="navbar-link " data-nav-link>Skills</a>
           </li>
 
           <li>
-            <a  target="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing"  href="./assets/Pdf/Sahadev_Roy_Resume.pdf"  class="navbar-link" data-nav-link>Resume</a>
+            <a href="#timeline" class="navbar-link " data-nav-link>Timeline</a>
+          </li>
+
+          <li>
+            <a href="#portfolio"  id="projects" class="navbar-link nav-link projects" data-nav-link>Projects</a>
+          </li>
+
+          <li>
+            <a  target="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing"  href="./assets/Pdf/Sahadev_Roy_Resume.pdf"  class="navbar-link nav-link resume" data-nav-link>Resume</a>
           </li>
 
           
 
           <li>
-            <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
+            <a href="#contact"  id="contact" class="navbar-link nav-link contact" data-nav-link>Contact</a>
           </li>
 
         </ul>
@@ -99,22 +101,22 @@
         <div class="container">
 
           <figure class="hero-banner img-holder has-before" style="--width: 640; --height: 840;">
-            <img src="./assets/images/Profile.jpg" width="640" height="840" alt="Bernard Smith" class="img-cover">
+            <img  src="./assets/images/Profile.jpg" width="640" height="840" alt="Bernard Smith" class="img-cover home-img">
           </figure>
 
           <div class="hero-content">
 
-            <p class="section-subtitle">About</p>
+            <p  id="resume-button-2" class="section-subtitle">About</p>
 
-            <h1 class="h1 hero-title"> Hi, I am <span>Sahadev Roy</span></h1>
+            <h1 id="user-detail-name" class="h1 hero-title"> Hi, I am <span>Sahadev Roy</span></h1>
 
             <ul class="hero-list">
-              <p class="section-text">
+              <p class="section-text" id="user-detail-intro">
                 A Java Backend Developer who loves solving problems and building projects . I am equipped with a variety of technologies and tools to help me build the best possible product.
               </p>
 
               <li>
-                <a href="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing" target="_blank" class="list-link">
+                <a  id="resume-button-1" href="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing" target="_blank" class="list-link">
                   <span class="span">Resume</span>
 
                   <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
@@ -182,7 +184,7 @@
 
               <li class="skills-item">
                 <div class="wrapper">
-                  <h3 class="skill-title">Java</h3>
+                  <h3 class="skill-title skills-card-name">Java</h3>
 
                   <data class="skill-value" value="100%"></data>
                 </div>
@@ -193,19 +195,7 @@
               </li>
               <li class="skills-item">
                 <div class="wrapper">
-                  <h3 class="skill-title">Hibernate</h3>
-
-                  <data class="skill-value" value="100%"></data>
-                </div>
-
-                <div class="progress-box">
-                  <div class="progress" style="width: 100%"></div>
-                </div>
-              </li>
-
-              <li class="skills-item">
-                <div class="wrapper">
-                  <h3 class="skill-title">mySQL</h3>
+                  <h3 class="skill-title skills-card-name">Hibernate</h3>
 
                   <data class="skill-value" value="100%"></data>
                 </div>
@@ -217,7 +207,19 @@
 
               <li class="skills-item">
                 <div class="wrapper">
-                  <h3 class="skill-title">JavaScript</h3>
+                  <h3 class="skill-title skills-card-name">mySQL</h3>
+
+                  <data class="skill-value" value="100%"></data>
+                </div>
+
+                <div class="progress-box">
+                  <div class="progress" style="width: 100%"></div>
+                </div>
+              </li>
+
+              <li class="skills-item">
+                <div class="wrapper">
+                  <h3 class="skill-title skills-card-name">JavaScript</h3>
 
                   <data class="skill-value" value="100%"></data>
                 </div>
@@ -228,7 +230,7 @@
               </li>
               <li class="skills-item">
                 <div class="wrapper">
-                  <h3 class="skill-title">HTML & CSS</h3>
+                  <h3 class="skill-title skills-card-name">HTML & CSS</h3>
 
                   <data class="skill-value" value="100%"></data>
                 </div>
@@ -255,25 +257,25 @@
               <br>
              
                <a href="https://skillicons.dev">
-                <img src="https://skillicons.dev/icons?i=js, ,java, ,hibernate" />
+                <img class="skills-card-img"  src="https://skillicons.dev/icons?i=js, ,java, ,hibernate" />
                 
               </a>
               <br>
               <br>
                <a href="https://skillicons.dev">
-                <img src="https://skillicons.dev/icons?i=maven, ,spring, ,github" />
+                <img class="skills-card-img" src="https://skillicons.dev/icons?i=maven, ,spring, ,github" />
                 
               </a>
               <br>
               <br>
                <a href="https://skillicons.dev">
-                <img src="https://skillicons.dev/icons?i=nodejs, ,html, ,css" />
+                <img class="skills-card-img" src="https://skillicons.dev/icons?i=nodejs, ,html, ,css" />
                 
               </a>
               <br>
               <br>
                <a href="https://skillicons.dev">
-                <img src="https://skillicons.dev/icons?i=aws, ,mysql, ,vscode" />
+                <img class="skills-card-img" src="https://skillicons.dev/icons?i=aws, ,mysql, ,vscode" />
                 
               </a>
 
@@ -359,14 +361,14 @@
           <ul class="has-scrollbar">
 
             <li class="scrollbar-item">
-              <div class="card">
+              <div class="card project-card">
 
                 <figure class="card-banner img-holder" style="--width: 600; --height: 675;">
                   <img src="./assets/images/Farfetch.jpg" width="600" height="675" loading="lazy" alt="Coming Soon"
                     class="img-cover">
                 </figure>
 
-                <a href="https://illustrious-crostata-a644a9.netlify.app" target="_blank" class="card-content">
+                <a href="https://illustrious-crostata-a644a9.netlify.app" target="_blank" class="card-content project-github-link">
 
                   <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
 
@@ -384,13 +386,13 @@
 
               </div>
               
-              <h3 class="h3 card-title">Farfetch Clone</h3>
+              <h3 class="h3 card-title project-title" >Farfetch Clone</h3>
 
-              <p class="card-text">An British-Portuguese online luxury fashion retail platform that sells products and brands from around the world, My team members and me collaboratively made a clone of it. <br><br> Tech Stack used : JavaScript, HTML, CSS, Github.</p>
+              <p class="card-text project-description">An British-Portuguese online luxury fashion retail platform that sells products and brands from around the world, My team members and me collaboratively made a clone of it. <br><br class="project-tech-stack"> Tech Stack used : JavaScript, HTML, CSS, Github.</p>
 
               <ul class="hero-list">
                 <li>
-                  <a href="https://github.com/HARSHAL-AP/projectunit3_farfetch.com" target="_blank" class="list-link">
+                  <a href="https://github.com/HARSHAL-AP/projectunit3_farfetch.com" target="_blank" class="list-link project-github-link">
                     <span class="span">GitHub Repo</span>
                     <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
                   </a>
@@ -401,14 +403,14 @@
             </li>
 
             <li class="scrollbar-item">
-              <div class="card">
+              <div class="card project-card">
 
                 <figure class="card-banner img-holder" style="--width: 600; --height: 675;">
                   <img src="./assets/images/Shopbop.jpg" width="600" height="675" loading="lazy" alt="Coming Soon"
                     class="img-cover">
                 </figure>
 
-                <a href="https://aquamarine-cuchufli-20996f.netlify.app" target="_blank" class="card-content">
+                <a href="https://aquamarine-cuchufli-20996f.netlify.app" target="_blank" class="card-content project-github-link">
 
                   <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
 
@@ -421,13 +423,13 @@
                
 
               </div class="repo-div">
-                <h3 class="h3 card-title">Shopbop Clone</h3>
+                <h3 class="h3 card-title project-title">Shopbop Clone</h3>
 
-                              <p class="card-text">We have tried our best to make a fully-functional clone of Shopbop website that provides a minimal user experience where users can roam around and purchase. <br><br> Tech Stack used : JavaScript, HTML, CSS, Github.</p>
+                              <p class="card-text project-description" >We have tried our best to make a fully-functional clone of Shopbop website that provides a minimal user experience where users can roam around and purchase. <br><br class="project-tech-stack"> Tech Stack used : JavaScript, HTML, CSS, Github.</p>
 
               <ul class="hero-list">
                 <li>
-                  <a href="https://github.com/nitish906/shopbop" target="_blank" class="list-link">
+                  <a href="https://github.com/nitish906/shopbop" target="_blank" class="list-link project-github-link">
                     <span class="span">GitHub Repo</span>
                     <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
                   </a>
@@ -441,14 +443,14 @@
             </li>
 
             <li class="scrollbar-item">
-              <div class="card">
+              <div class="card project-card">
 
                 <figure class="card-banner img-holder" style="--width: 600; --height: 675;">
                   <img src="./assets/images/onlineshoping.jpg" width="600" height="675" loading="lazy" alt="Coming Soon"
                     class="img-cover">
                 </figure>
 
-                <a href="https://github.com/shodevR/Shopping-Application-Database-System" target="_blank" class="card-content">
+                <a href="https://drive.google.com/file/d/1MT8hhpb9DaEMBdGjm2LNyivQA2eBOhC5/view?usp=share_link" target="_blank" class="card-content project-deployed-link">
 
                   <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
 
@@ -460,13 +462,13 @@
               
 
               </div class="repo-div">
-              <h3 class="h3 card-title">Shopping App Database System</h3>
+              <h3 class="h3 card-title project-title">Shopping App Database System</h3>
 
-                            <p class="card-text">This was a collaborative project in which me made the database system of an online Sphoping website. <br> <br> Tech Stack Used: Spring Boot, JAVA, Spring JPA, MySQL, Swagger ui.</p>
+                            <p class="card-text project-description">This was a collaborative project in which me made the database system of an online Sphoping website. <br> <br class="project-tech-stack"> Tech Stack Used: Spring Boot, JAVA, Spring JPA, MySQL, Swagger ui.</p>
 
               <ul class="hero-list">
                 <li>
-                  <a href="https://github.com/shodevR/Shopping-Application-Database-System" target="_blank" class="list-link">
+                  <a href="https://github.com/shodevR/Shopping-Application-Database-System" target="_blank" class="list-link project-github-link">
                     <span class="span">GitHub Repo</span>
                     <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
                   </a>
@@ -547,23 +549,23 @@
       
     <section>
 
- <div class="calendar">
-      
-        Loading the data just for you.
-      </div>
-    </br>
-  </br>
- 
+          <div class="calendar">
+                
+                  Loading the data just for you.
+                </div>
+                </br>
+            </br>
+          
   
 
   
  
-    <div class="gitStats">
-      <p>&nbsp;<img  align="center" src="https://github-readme-stats.vercel.app/api?username=shodevR&show_icons=true&locale=en" alt="shodevR" /></p>
-    </div>
-    <div class="gitStats">
-      <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=shodevR&" alt="shodevR" /></p>
-    </div>
+          <div class="gitStats" id="github-stats-card">
+            <p>&nbsp;<img  align="center" src="https://github-readme-stats.vercel.app/api?username=shodevR&show_icons=true&locale=en" alt="shodevR" /></p>
+          </div>
+          <div class="gitStats" id="github-streak-stats">
+            <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=shodevR&" alt="shodevR" /></p>
+          </div>
 
     </section>
      
@@ -575,7 +577,7 @@
         GitHubCalendar(".calendar", "shodevR", { responsive: true });
       
       
-        GitHubCalendar(".calendar", "/shubhrakantighosh", {
+        GitHubCalendar(".calendar", "/shodevR", {
            proxy (username) {
              return fetch(`https://your-proxy.com/github?user=${shodevR}`)
            }
@@ -629,7 +631,7 @@
               <li class="contact-item">
                 <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
 
-                <a href="tel:+918016957559" class="contact-link">+91-8016957559</a>
+                <a  id="contact-phone" href="tel:+918016957559" class="contact-link">+91-8016957559</a>
               </li>
 
 
@@ -637,19 +639,19 @@
               <li class="contact-item">
                 <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
 
-                <a href="mailto:royshodev@gmail.com" class="contact-link">royshodev@gmail.com</a>
+                <a id="contact-email" href="mailto:royshodev@gmail.com" class="contact-link">royshodev@gmail.com</a>
               </li>
 
               <li class="contact-item">
                 <ion-icon name="logo-github" aria-hidden="true"></ion-icon>
 
-                <a href="https://github.com/shodevR" class="contact-link">shodevR</a>
+                <a  id="contact-github" href="https://github.com/shodevR" class="contact-link">shodevR</a>
               </li>
 
               <li class="contact-item">
                 <ion-icon name="logo-linkedin" aria-hidden="true"></ion-icon>
 
-                <a href="https://www.linkedin.com/in/sahadev-roy-8761a1232/" class="contact-link">LinkedIn</a>
+                <a  id="contact-linkedin" href="https://www.linkedin.com/in/sahadev-roy-8761a1232/" class="contact-link">LinkedIn</a>
               </li>
 
 

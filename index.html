@@ -578,8 +578,8 @@
       
       
         GitHubCalendar(".calendar", "/shodevR", {
-           proxy (username) {
-             return fetch(`https://your-proxy.com/github?user=${shodevR}`)
+           proxy () {
+             return fetch(`https://your-proxy.com/github?user=shodevR`)
            }
         }).then(r => r.text())
       </script>

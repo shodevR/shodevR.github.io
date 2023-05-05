@@ -452,23 +452,23 @@ body::-webkit-scrollbar-thumb {
 
 
 /*-----------------------------------*\
-  #SKILLS
+  #skillss
 \*-----------------------------------*/
 
-.skills-banner { display: none; }
+.skillss-banner { display: none; }
 
-.skills { background-color: var(--black); }
+.skillss { background-color: var(--black); }
 
-.skills .section-title { color: var(--white); }
+.skillss .section-title { color: var(--white); }
 
-.skills .section-text {
+.skillss .section-text {
   color: var(--gray-x-11);
   margin-block: 40px 45px;
 }
 
-.skills-item:not(:last-child) { margin-block-end: 25px; }
+.skillss-item:not(:last-child) { margin-block-end: 25px; }
 
-.skills-list .wrapper {
+.skillss-list .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -482,9 +482,9 @@ body::-webkit-scrollbar-thumb {
   font-weight: unset;
 }
 
-.skills .progress-box { background-color: var(--white_10); }
+.skillss .progress-box { background-color: var(--white_10); }
 
-.skills .progress {
+.skillss .progress {
   background-color: var(--theme-color);
   height: 8px;
 }
@@ -959,17 +959,17 @@ textarea.input-field {
 
 
   /**
-   * SKILLS
+   * skillss
    */
 
-  .skills .container {
+  .skillss .container {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 150px;
   }
 
-  .skills-banner {
+  .skillss-banner {
     display: block;
     position: absolute;
     top: 0;

@@ -42,18 +42,18 @@
       <a href="#" class="logo">Home</a>
 
       <nav class="navbar active"  id="nav-menu" data-navbar>
-        <ul class="navbar-list">
+        <ul class="navbar-list" id="navbar11">
 
           <li>
-            <a href="#home"  id="home" class="navbar-link nav-link home" data-nav-link>Home</a>
+            <a href="#home" class="navbar-link nav-link home" data-nav-link>Home</a>
           </li>
 
           <li>
-            <a href="#home" id="about" class="navbar-link nav-link about" data-nav-link>About</a>
+            <a href="#home"class="navbar-link nav-link about" data-nav-link>About</a>
           </li>
 
           <li>
-            <a href="#skills" id="skills" class="navbar-link " data-nav-link>Skills</a>
+            <a href="#skills" class="navbar-link skills" data-nav-link>Skills</a>
           </li>
 
           <li>
@@ -61,17 +61,17 @@
           </li>
 
           <li>
-            <a href="#portfolio"  id="projects" class="navbar-link nav-link projects" data-nav-link>Projects</a>
+            <a href="#portfolio"  class="navbar-link nav-link projects" data-nav-link>Projects</a>
           </li>
 
-          <li>
-            <a  target="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing"  href="./assets/Pdf/Sahadev_Roy_Resume.pdf"  class="navbar-link nav-link resume" data-nav-link>Resume</a>
+          <li id="resume-button-1">
+            <a  id="resume-link-1"  target="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing"  href="./assets/Pdf/Sahadev_Roy_Resume.pdf" download="Sahadev_Roy_Resume" class="navbar-link nav-link resume" data-nav-link>Resume</a>
           </li>
 
           
 
           <li>
-            <a href="#contact"  id="contact" class="navbar-link nav-link contact" data-nav-link>Contact</a>
+            <a href="#contact"  class="navbar-link nav-link contact" data-nav-link>Contact</a>
           </li>
 
         </ul>
@@ -106,7 +106,7 @@
 
           <div class="hero-content">
 
-            <p  id="resume-button-2" class="section-subtitle">About</p>
+            <p  id="about" class="section-subtitle">About</p>
 
             <h1 id="user-detail-name" class="h1 hero-title"> Hi, I am <span>Sahadev Roy</span></h1>
 
@@ -116,7 +116,7 @@
               </p>
 
               <li>
-                <a  id="resume-button-1" href="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing" target="_blank" class="list-link">
+                <a  id="resume-link-2" href="https://drive.google.com/file/d/180Zgs6hICwJVaEJfahpiOlQPFy9hBDDD/view?usp=sharing" download="Sahadev_Roy_Resume" target="_blank" class="list-link nav-link resume">
                   <span class="span">Resume</span>
 
                   <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
@@ -166,23 +166,23 @@
         - #SKILLS
       -->
 
-      <section class="section skills has-before" id="skills" aria-label="skills"
+      <section class="section skillss has-before" id="skills" aria-label="skills"
         style="background-image: url('./assets/images/skills-bg.png')">
         <div class="container">
 
-          <div class="skills-content">
+          <div class="skillss-content ">
 
             <p class="section-subtitle">Skills</p>
 
             <h2 class="h2 section-title">PROGRAMMING SKILLS</h2>
 
-            <p class="section-text">
+            <p class="section-text" id="user-detail-intro">
              Had done several group and solo projects as a Java Backend Developer and also had made projects using HTML, CSS & JavaScript throughout my entire Masai Learning Journy.
             </p>
 
-            <ul class="skills-list">
+            <ul class="skillss-list">
 
-              <li class="skills-item">
+              <li class="skillss-item">
                 <div class="wrapper">
                   <h3 class="skill-title skills-card-name">Java</h3>
 
@@ -193,7 +193,7 @@
                   <div class="progress" style="width: 100%"></div>
                 </div>
               </li>
-              <li class="skills-item">
+              <li class="skillss-item">
                 <div class="wrapper">
                   <h3 class="skill-title skills-card-name">Hibernate</h3>
 
@@ -205,7 +205,7 @@
                 </div>
               </li>
 
-              <li class="skills-item">
+              <li class="skillss-item">
                 <div class="wrapper">
                   <h3 class="skill-title skills-card-name">mySQL</h3>
 
@@ -217,7 +217,7 @@
                 </div>
               </li>
 
-              <li class="skills-item">
+              <li class="skillss-item">
                 <div class="wrapper">
                   <h3 class="skill-title skills-card-name">JavaScript</h3>
 
@@ -228,9 +228,9 @@
                   <div class="progress" style="width: 100%"></div>
                 </div>
               </li>
-              <li class="skills-item">
+              <li class="skillss-item">
                 <div class="wrapper">
-                  <h3 class="skill-title skills-card-name">HTML & CSS</h3>
+                  <h3 class="skill-title skillss-card-name">HTML & CSS</h3>
 
                   <data class="skill-value" value="100%"></data>
                 </div>
@@ -245,7 +245,7 @@
 
           </div>
 
-          <div class="skills-banner has-before">
+          <div class="skillss-banner has-before">
             <br>
             
             <h2 class="h2 section-title">MY TECH STACK</h2>
@@ -257,25 +257,25 @@
               <br>
              
                <a href="https://skillicons.dev">
-                <img class="skills-card-img"  src="https://skillicons.dev/icons?i=js, ,java, ,hibernate" />
+                <img class="skillss-card-img"  src="https://skillicons.dev/icons?i=js, ,java, ,hibernate" />
                 
               </a>
               <br>
               <br>
                <a href="https://skillicons.dev">
-                <img class="skills-card-img" src="https://skillicons.dev/icons?i=maven, ,spring, ,github" />
+                <img class="skillss-card-img" src="https://skillicons.dev/icons?i=maven, ,spring, ,github" />
                 
               </a>
               <br>
               <br>
                <a href="https://skillicons.dev">
-                <img class="skills-card-img" src="https://skillicons.dev/icons?i=nodejs, ,html, ,css" />
+                <img class="skillss-card-img" src="https://skillicons.dev/icons?i=nodejs, ,html, ,css" />
                 
               </a>
               <br>
               <br>
                <a href="https://skillicons.dev">
-                <img class="skills-card-img" src="https://skillicons.dev/icons?i=aws, ,mysql, ,vscode" />
+                <img class="skillss-card-img" src="https://skillicons.dev/icons?i=aws, ,mysql, ,vscode" />
                 
               </a>
 
@@ -361,7 +361,7 @@
           <ul class="has-scrollbar">
 
             <li class="scrollbar-item">
-              <div class="card project-card">
+              <div class="project-card card ">
 
                 <figure class="card-banner img-holder" style="--width: 600; --height: 675;">
                   <img src="./assets/images/Farfetch.jpg" width="600" height="675" loading="lazy" alt="Coming Soon"
@@ -386,7 +386,7 @@
 
               </div>
               
-              <h3 class="h3 card-title project-title" >Farfetch Clone</h3>
+              <h3 class="project-title h3 card-title " >Farfetch Clone</h3>
 
               <p class="card-text project-description">An British-Portuguese online luxury fashion retail platform that sells products and brands from around the world, My team members and me collaboratively made a clone of it. <br><br class="project-tech-stack"> Tech Stack used : JavaScript, HTML, CSS, Github.</p>
 
@@ -560,11 +560,11 @@
 
   
  
-          <div class="gitStats" id="github-stats-card">
-            <p>&nbsp;<img  align="center" src="https://github-readme-stats.vercel.app/api?username=shodevR&show_icons=true&locale=en" alt="shodevR" /></p>
+          <div class="gitStats"  id="github-stats-card">
+            <p>&nbsp;<img  align="center" src="https://github-readme-stats.vercel.app/api?username=shodevR&show_icons=true&theme=dark" alt="shodevR" /></p>
           </div>
           <div class="gitStats" id="github-streak-stats">
-            <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=shodevR&" alt="shodevR" /></p>
+            <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com?user=shodevR&theme=dark" alt="shodevR" /></p>
           </div>
 
     </section>

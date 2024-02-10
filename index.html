@@ -41,7 +41,7 @@
 
       <a href="#" class="logo">Home</a>
 
-      <nav class="navbar active"  id="nav-menu" data-navbar>
+      <nav class="navbar"  id="nav-menu" data-navbar>
         <ul class="navbar-list" id="navbar11">
 
           <li>
@@ -77,7 +77,7 @@
         </ul>
       </nav>
 
-      <button class="nav-toggle-btn active" aria-label="toggle menu" data-nav-toggler>
+      <button class="nav-toggle-btn" aria-label="toggle menu" data-nav-toggler>
         <span class="line line-1"></span>
         <span class="line line-2"></span>
         <span class="line line-3"></span>
@@ -112,7 +112,7 @@
 
             <ul class="hero-list">
               <p class="section-text" id="user-detail-intro">
-                A Java Backend Developer who loves solving problems and building projects . I am equipped with a variety of technologies and tools to help me build the best possible product.
+                A Dot Net Developer and Java Backend Developer who loves solving problems and building projects . I am equipped with a variety of technologies and tools to help me build the best possible product.
               </p>
 
               <li>
@@ -177,10 +177,33 @@
             <h2 class="h2 section-title">PROGRAMMING SKILLS</h2>
 
             <p class="section-text" id="user-detail-intro">
+              Currently working as a Web Developer in TechBinary in ADO .Net MVC . <br>
              Had done several group and solo projects as a Java Backend Developer and also had made projects using HTML, CSS & JavaScript throughout my entire Masai Learning Journy.
             </p>
 
             <ul class="skillss-list">
+              <li class="skillss-item">
+                <div class="wrapper">
+                  <h3 class="skill-title skills-card-name">ADO .Net MVC</h3>
+
+                  <data class="skill-value" value="100%"></data>
+                </div>
+
+                <div class="progress-box">
+                  <div class="progress" style="width: 100%"></div>
+                </div>
+              </li>
+              <li class="skillss-item">
+                <div class="wrapper">
+                  <h3 class="skill-title skills-card-name">C#</h3>
+
+                  <data class="skill-value" value="100%"></data>
+                </div>
+
+                <div class="progress-box">
+                  <div class="progress" style="width: 100%"></div>
+                </div>
+              </li>
 
               <li class="skillss-item">
                 <div class="wrapper">
@@ -306,16 +329,42 @@
         <div class="container">
 
           <p class="section-subtitle">Timeline</p>
+          <h2 class="h2 section-title">EXPERIENCE</h2>
+          <ul class="timeline-list">
+            <li class="timeline-item">
 
+              <h3 class="item-period">December, 2023 - Today</h3>
+
+              <p class="item-title">.Net Developer / Web Developer</p>
+
+              <p class="item-address">TechBinary (Japur)</p>
+
+            </li>
+
+           
+
+
+          </ul>
+          <br>
+          <br>
           <h2 class="h2 section-title">EDUCATIONAL BACKGROUND</h2>
 
           <ul class="timeline-list">
+            <li class="timeline-item">
+
+              <h3 class="item-period">August, 2023 - November, 2023</h3>
+
+              <p class="item-title">.Net Developer / C#</p>
+
+              <p class="item-address">Masai School (remote)</p>
+
+            </li>
 
             <li class="timeline-item">
 
-              <h3 class="item-period">July, 2022 - Today</h3>
+              <h3 class="item-period">July, 2022 - August, 2023</h3>
 
-              <p class="item-title">Java Backend Developer</p>
+              <p class="item-title">Java Backend Developer / Springboot</p>
 
               <p class="item-address">Masai School (remote)</p>
 
@@ -547,7 +596,7 @@
       href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"
       />
       
-    <section>
+    <!-- <section>
 
           <div class="calendar">
                 
@@ -567,10 +616,10 @@
             <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com?user=shodevR&theme=dark" alt="shodevR" /></p>
           </div>
 
-    </section>
+    </section> -->
      
       
-      <script>
+      <!-- <script>
         GitHubCalendar(".calendar", "shodevR");
       
       
@@ -582,7 +631,7 @@
         //      return fetch(`https://your-proxy.com/github?user=shodevR`)
         //    }
         // }).then(r => r.text())
-      </script>
+      </script> -->
 
   
 
@@ -597,7 +646,22 @@
 
    
 
+<!-- <setion class = "section github" id=" github" aria-label="GitHub Stats">
+  <div class="container">
+    <div class="contact-content">
 
+      <p class="section-subtitle">Github info</p>
+
+      <h2 class="h2 section-title">GITHUB STATS</h2>
+      <!-- HTML -->
+        <div id="github-stats">
+          <!-- GitHub Stats will be displayed here -->
+        </div>
+
+  </div>
+ 
+</div>
+</section> -->
 
       <!-- 
         - #CONTACT
@@ -765,3 +829,26 @@
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/@octokit/core@5">
+ 
+</script>
+
+<script>
+  // JavaScript using Octokit
+  const octokit = new Octokit({ auth: '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' });
+
+async function fetchGitHubStats() {
+    try {
+        const { data: contributionsCalendar } = await octokit.rest.activity.getAuthenticatedUserContributionCalendar();
+        displayContributionsCalendar(contributionsCalendar);
+    } catch (error) {
+        console.error('Error fetching GitHub stats:', error);
+    }
+}
+
+function displayContributionsCalendar(contributionsCalendar) {
+    const calendarImage = document.createElement('img');
+    calendarImage.src = contributionsCalendar.url;
+    document.getElementById('github-stats').appendChild(calendarImage);
+}
+</script>

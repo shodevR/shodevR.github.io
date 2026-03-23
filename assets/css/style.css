@@ -339,6 +339,7 @@ body::-webkit-scrollbar-thumb {
   font-weight: var(--fw-700);
 }
 
+
 .nav-toggle-btn .line {
   width: 30px;
   height: 2px;
@@ -447,7 +448,47 @@ body::-webkit-scrollbar-thumb {
 
 .exp-list .span { font-size: var(--fs-13); }
 
+/* pop-up */
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  text-align: center;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.popup-box p {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #222;
+}
+
+.popup-box button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  margin-left: 40%;
+}
 
 
 

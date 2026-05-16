@@ -28,6 +28,9 @@
   -->
   <link rel="preload" as="image" href="./assets/images/Profile.jpg">
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 </head>
 
 <body>
@@ -1018,10 +1021,14 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
           fetch('https://api.github.com/users/shodevR/repos?per_page=100', { headers })
         ]);
 
+        if (!userRes.ok || !reposRes.ok) throw new Error('API Error');
+
         const user = await userRes.json();
         const repos = await reposRes.json();
 
         const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+        const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+        
         const topLanguages = repos
           .filter(r => r.language)
           .reduce((acc, r) => {
@@ -1031,11 +1038,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
         const sortedLanguages = Object.entries(topLanguages)
           .sort((a, b) => b[1] - a[1])
           .slice(0, 5);
-
-        const streakRes = await fetch('https://github-contributions-api.jogruber.de/v4/shodevR');
-        const streakData = await streakRes.json();
-        const currentStreak = streakData.contributions?.slice(-1)[0]?.count || 0;
-        const longestStreak = Math.max(...streakData.contributions.map(d => d.count));
+        const totalLangRepos = repos.filter(r => r.language).length;
 
         const container = document.getElementById('github-stats');
         container.innerHTML = `
@@ -1051,6 +1054,11 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               <div class="stat-name">Stars</div>
             </div>
             <div class="stat-card">
+              <div class="stat-icon">🍴</div>
+              <div class="stat-value">${totalForks}</div>
+              <div class="stat-name">Forks</div>
+            </div>
+            <div class="stat-card">
               <div class="stat-icon">👥</div>
               <div class="stat-value">${user.followers}</div>
               <div class="stat-name">Followers</div>
@@ -1060,16 +1068,6 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               <div class="stat-value">${user.following}</div>
               <div class="stat-name">Following</div>
             </div>
-            <div class="stat-card">
-              <div class="stat-icon">🔥</div>
-              <div class="stat-value">${longestStreak}</div>
-              <div class="stat-name">Best Streak</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">📅</div>
-              <div class="stat-value">${currentStreak}</div>
-              <div class="stat-name">Today's Contributions</div>
-            </div>
           </div>
           <div class="languages-section">
             <h4>Top Languages</h4>
@@ -1077,20 +1075,103 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               ${sortedLanguages.map(([lang, count]) => `
                 <div class="language-item">
                   <span class="lang-name">${lang}</span>
-                  <div class="lang-bar"><div class="lang-fill" style="width: ${(count / repos.filter(r => r.language).length) * 100}%"></div></div>
+                  <div class="lang-bar"><div class="lang-fill" style="width: ${(count / totalLangRepos) * 100}%"></div></div>
                   <span class="lang-count">${count}</span>
                 </div>
               `).join('')}
             </div>
           </div>
         `;
+
+        // Animate after content loads
+        setTimeout(() => {
+          document.querySelectorAll('.stat-card').forEach((card, i) => {
+            gsap.to(card, {
+              scrollTrigger: { trigger: card, start: 'top 90%' },
+              opacity: 1, y: 0, scale: 1, duration: 0.5, delay: i * 0.1, ease: 'back.out(1.7)'
+            });
+          });
+          gsap.to('.languages-section', {
+            scrollTrigger: { trigger: '.languages-section', start: 'top 90%' },
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+          });
+        }, 100);
+
       } catch (error) {
         console.error('Error:', error);
-        document.getElementById('github-stats').innerHTML = '<p>Unable to load GitHub stats</p>';
+        document.getElementById('github-stats').innerHTML = '<p>Unable to load GitHub stats - check console</p>';
       }
     }
 
     fetchGitHubStats();
+  </script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero section animation
+    gsap.to('.hero .hero-banner', {
+      scrollTrigger: { trigger: '.hero', start: 'top 80%' },
+      opacity: 1, x: 0, rotate: 0, duration: 1, ease: 'power3.out'
+    });
+    gsap.to('.hero .hero-content', {
+      scrollTrigger: { trigger: '.hero', start: 'top 80%' },
+      opacity: 1, x: 0, duration: 1, delay: 0.3, ease: 'power3.out'
+    });
+
+    // Section titles
+    document.querySelectorAll('.section-subtitle, .section-title').forEach(el => {
+      gsap.to(el, {
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+      });
+    });
+
+    // Timeline items
+    document.querySelectorAll('.timeline-item').forEach((item, i) => {
+      gsap.to(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 1, x: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out'
+      });
+    });
+
+    // Skills items
+    document.querySelectorAll('.skillss-item').forEach((item, i) => {
+      gsap.to(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 1, x: 0, duration: 0.5, delay: i * 0.08, ease: 'power3.out'
+      });
+    });
+
+    // Project cards
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      gsap.to(card, {
+        scrollTrigger: { trigger: card, start: 'top 90%' },
+        opacity: 1, y: 0, scale: 1, duration: 0.6, delay: i * 0.15, ease: 'power3.out'
+      });
+    });
+
+    // Contact items
+    document.querySelectorAll('.contact-item').forEach((item, i) => {
+      gsap.to(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out'
+      });
+    });
+
+    // Parallax effect on hero
+    gsap.to('.hero', {
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+      y: 100
+    });
+
+    // Smooth reveal for sections
+    document.querySelectorAll('section').forEach(section => {
+      gsap.from(section, {
+        scrollTrigger: { trigger: section, start: 'top 90%' },
+        opacity: 0, y: 50, duration: 0.8, ease: 'power3.out'
+      });
+    });
   </script>
 
   <script>

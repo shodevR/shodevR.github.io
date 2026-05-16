@@ -1195,6 +1195,143 @@ textarea.input-field {
   color: var(--sonic-silver);
 }
 
+/* Scroll Animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero .hero-banner {
+  opacity: 0;
+  transform: translateX(-100px) rotate(-10deg);
+}
+
+.hero .hero-content {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.hero.active .hero-banner {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero.active .hero-content {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.timeline-item.active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.6s ease;
+}
+
+.project-card {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+}
+
+.project-card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skillss-item {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.skillss-item.active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s ease;
+}
+
+.contact-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.contact-item.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+}
+
+.section-title {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.section-title.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
+}
+
+.section-subtitle {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.section-subtitle.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.6s ease;
+}
+
+.stat-card {
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+}
+
+.stat-card.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.languages-section {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.languages-section.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
+}
+
+/* Parallax background */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(10,100,57,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
 
 
 

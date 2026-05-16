@@ -137,6 +137,143 @@ html {
   font-family: var(--ff-mulish);
   font-size: 10px;
   scroll-behavior: smooth;
+  cursor: none;
+}
+
+body {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--theme-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, opacity 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--theme-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor.hovered {
+  transform: translate(-50%, -50%) scale(1.5);
+  background: rgba(255, 107, 53, 0.1);
+}
+
+.cursor-dot.hovered {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+  background: var(--black_10);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --sonic-silver: #a0a0a0;
+  --spanish-gray: #888;
+  --light-gray: #333;
+  --gray-x-11: #ccc;
+  --dim-gray: #999;
+  --cultured: #1a1a1a;
+  --black_10: rgba(255,255,255,0.1);
+  --black_20: rgba(255,255,255,0.2);
+  --black_30: rgba(255,255,255,0.3);
+  --white: #1a1a1a;
+  --black: #f5f5f5;
+  --theme-color: #ff6b35;
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode .header {
+  background-color: #1a1a1a;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-mode .navbar {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .hero {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .section {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode .card-content {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .input-field {
+  background-color: #2a2a2a;
+  border-color: rgba(255,255,255,0.1);
+  color: #e0e0e0;
+}
+
+body.dark-mode .popup-box {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .stat-card {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+body.dark-mode .languages-section {
+  background: #2a2a2a;
+}
+
+body.dark-mode .timeline-item {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 body {

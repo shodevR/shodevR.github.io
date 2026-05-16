@@ -26,7 +26,7 @@
   <!-- 
     - preload images
   -->
-  <link rel="preload" as="image" href="./assets/images/hero-banner.jpg">
+  <link rel="preload" as="image" href="./assets/images/Profile.jpg">
 
 </head>
 
@@ -36,12 +36,12 @@
     - #HEADER
   -->
 
-  <header class="header activ" data-header>
+  <header class="header" data-header>
     <div class="container">
 
       <a href="#" class="logo">Home</a>
 
-      <nav class="navbar active"  id="nav-menu" data-navbar>
+      <nav class="navbar"  id="nav-menu" data-navbar>
         <ul class="navbar-list" id="navbar11">
 
           <li>
@@ -52,8 +52,8 @@
             <a href="#about" class="navbar-link nav-link about" data-nav-link>About</a>
           </li>
 
-          <li class="navbar-link skills">
-            <a href="#skills" data-nav-link>Skills</a>
+          <li>
+            <a href="#skills" class="navbar-link nav-link skills" data-nav-link>Skills</a>
           </li>
 
           <li>
@@ -496,7 +496,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               
                
 
-              </div class="repo-div">
+              </div>
                 <h3 class="h3 card-title project-title">Car Renatal Clone</h3>
 
                 <p class="card-text project-description" >We have tried our best to make a fully-functional clone of Car-Rental Web Application that 
@@ -535,7 +535,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               
                
 
-              </div class="repo-div">
+              </div>
                 <h3 class="h3 card-title project-title">Next Holidays Clone</h3>
 
                 <p class="card-text project-description" >We have tried our best to make a fully-functional clone of Next Holoidays Website which  
@@ -620,7 +620,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               
                
 
-              </div class="repo-div">
+              </div>
                 <h3 class="h3 card-title project-title">Shopbop Clone</h3>
 
                               <p class="card-text project-description" >We have tried our best to make a fully-functional clone of Shopbop website that provides a minimal user experience where users can roam around and purchase. <br><br class="project-tech-stack"> Tech Stack used : JavaScript, HTML, CSS, Github.</p>
@@ -659,7 +659,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
                 </a>
               
 
-              </div class="repo-div">
+              </div>
               <h3 class="h3 card-title project-title">Shopping App Database System</h3>
 
                             <p class="card-text project-description">This was a collaborative project in which I made the database system of an online Sphoping website. <br> <br class="project-tech-stack"> Tech Stack Used: Spring Boot, JAVA, Spring JPA, MySQL, Swagger ui.</p>
@@ -812,21 +812,12 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
 
    
 
-<!-- <setion class = "section github" id=" github" aria-label="GitHub Stats">
+<section class="section github" id="github" aria-label="GitHub Stats">
   <div class="container">
-    <div class="contact-content">
-
-      <p class="section-subtitle">Github info</p>
-
-      <h2 class="h2 section-title">GITHUB STATS</h2>
-     HTML -->
-        <div id="github-stats">
-          <!-- GitHub Stats will be displayed here -->
-        </div>
-
+    <p class="section-subtitle">Github info</p>
+    <h2 class="h2 section-title">GITHUB STATS</h2>
+    <div id="github-stats"></div>
   </div>
- 
-</div>
 </section>
 
       <!-- 
@@ -1011,37 +1002,98 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
   <!-- 
     - ionicon link
   -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-</body>
+  <script type="module">
+    async function fetchGitHubStats() {
+      try {
+        const token = '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';
+        const headers = {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        };
 
-</html>
-<script src="https://cdn.jsdelivr.net/npm/@octokit/core@5">
- 
-</script>
+        const [userRes, reposRes] = await Promise.all([
+          fetch('https://api.github.com/users/shodevR', { headers }),
+          fetch('https://api.github.com/users/shodevR/repos?per_page=100', { headers })
+        ]);
 
-<script>
-  // JavaScript using Octokit
-  const octokit = new Octokit({ auth: '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' });
+        const user = await userRes.json();
+        const repos = await reposRes.json();
 
-async function fetchGitHubStats() {
-    try {
-        const { data: contributionsCalendar } = await octokit.rest.activity.getAuthenticatedUserContributionCalendar();
-        displayContributionsCalendar(contributionsCalendar);
-    } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
+        const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+        const topLanguages = repos
+          .filter(r => r.language)
+          .reduce((acc, r) => {
+            acc[r.language] = (acc[r.language] || 0) + 1;
+            return acc;
+          }, {});
+        const sortedLanguages = Object.entries(topLanguages)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5);
+
+        const streakRes = await fetch('https://github-contributions-api.jogruber.de/v4/shodevR');
+        const streakData = await streakRes.json();
+        const currentStreak = streakData.contributions?.slice(-1)[0]?.count || 0;
+        const longestStreak = Math.max(...streakData.contributions.map(d => d.count));
+
+        const container = document.getElementById('github-stats');
+        container.innerHTML = `
+          <div class="github-stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">📚</div>
+              <div class="stat-value">${user.public_repos}</div>
+              <div class="stat-name">Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="stat-value">${totalStars}</div>
+              <div class="stat-name">Stars</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-value">${user.followers}</div>
+              <div class="stat-name">Followers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🙋</div>
+              <div class="stat-value">${user.following}</div>
+              <div class="stat-name">Following</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🔥</div>
+              <div class="stat-value">${longestStreak}</div>
+              <div class="stat-name">Best Streak</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">📅</div>
+              <div class="stat-value">${currentStreak}</div>
+              <div class="stat-name">Today's Contributions</div>
+            </div>
+          </div>
+          <div class="languages-section">
+            <h4>Top Languages</h4>
+            <div class="language-bars">
+              ${sortedLanguages.map(([lang, count]) => `
+                <div class="language-item">
+                  <span class="lang-name">${lang}</span>
+                  <div class="lang-bar"><div class="lang-fill" style="width: ${(count / repos.filter(r => r.language).length) * 100}%"></div></div>
+                  <span class="lang-count">${count}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('github-stats').innerHTML = '<p>Unable to load GitHub stats</p>';
+      }
     }
-}
 
-function displayContributionsCalendar(contributionsCalendar) {
-    const calendarImage = document.createElement('img');
-    calendarImage.src = contributionsCalendar.url;
-    document.getElementById('github-stats').appendChild(calendarImage);
-}
-</script>
+    fetchGitHubStats();
+  </script>
 
-<script>
+  <script>
   const form = document.getElementById("contact-form");
   const popup = document.getElementById("popup");
   const popupMessage = document.getElementById("popup-message");
@@ -1093,3 +1145,6 @@ function displayContributionsCalendar(contributionsCalendar) {
     }
   });
 </script>
+
+</body>
+</html>

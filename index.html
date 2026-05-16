@@ -26,7 +26,15 @@
   <!-- 
     - preload images
   -->
-  <link rel="preload" as="image" href="./assets/images/hero-banner.jpg">
+  <link rel="preload" as="image" href="./assets/images/Profile.jpg">
+
+  <div class="cursor"></div>
+  <div class="cursor-dot"></div>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 </head>
 
@@ -36,12 +44,12 @@
     - #HEADER
   -->
 
-  <header class="header activ" data-header>
+  <header class="header" data-header>
     <div class="container">
 
       <a href="#" class="logo">Home</a>
 
-      <nav class="navbar active"  id="nav-menu" data-navbar>
+      <nav class="navbar"  id="nav-menu" data-navbar>
         <ul class="navbar-list" id="navbar11">
 
           <li>
@@ -52,8 +60,8 @@
             <a href="#about" class="navbar-link nav-link about" data-nav-link>About</a>
           </li>
 
-          <li class="navbar-link skills">
-            <a href="#skills" data-nav-link>Skills</a>
+          <li>
+            <a href="#skills" class="navbar-link nav-link skills" data-nav-link>Skills</a>
           </li>
 
           <li>
@@ -66,6 +74,12 @@
 
           <li id="resume-button-1">
              <a  id="resume-link-1"  target="https://drive.google.com/file/d/1YDHPv4MPx59BIjKL8piM-0B13A2TDNAz/view?usp=sharing"  href="./assets/Pdf/SahadevRoyCV.pdf" download="Sahadev_Roy_Resume" class="navbar-link nav-link resume" data-nav-link>Resume</a>
+          </li>
+
+          <li>
+            <button class="theme-toggle" aria-label="toggle theme">
+              <span class="theme-icon">🌙</span>
+            </button>
           </li>
 
         </ul>
@@ -496,7 +510,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               
                
 
-              </div class="repo-div">
+              </div>
                 <h3 class="h3 card-title project-title">Car Renatal Clone</h3>
 
                 <p class="card-text project-description" >We have tried our best to make a fully-functional clone of Car-Rental Web Application that 
@@ -535,7 +549,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               
                
 
-              </div class="repo-div">
+              </div>
                 <h3 class="h3 card-title project-title">Next Holidays Clone</h3>
 
                 <p class="card-text project-description" >We have tried our best to make a fully-functional clone of Next Holoidays Website which  
@@ -620,7 +634,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
               
                
 
-              </div class="repo-div">
+              </div>
                 <h3 class="h3 card-title project-title">Shopbop Clone</h3>
 
                               <p class="card-text project-description" >We have tried our best to make a fully-functional clone of Shopbop website that provides a minimal user experience where users can roam around and purchase. <br><br class="project-tech-stack"> Tech Stack used : JavaScript, HTML, CSS, Github.</p>
@@ -659,7 +673,7 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
                 </a>
               
 
-              </div class="repo-div">
+              </div>
               <h3 class="h3 card-title project-title">Shopping App Database System</h3>
 
                             <p class="card-text project-description">This was a collaborative project in which I made the database system of an online Sphoping website. <br> <br class="project-tech-stack"> Tech Stack Used: Spring Boot, JAVA, Spring JPA, MySQL, Swagger ui.</p>
@@ -812,21 +826,12 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
 
    
 
-<!-- <setion class = "section github" id=" github" aria-label="GitHub Stats">
+<section class="section github" id="github" aria-label="GitHub Stats">
   <div class="container">
-    <div class="contact-content">
-
-      <p class="section-subtitle">Github info</p>
-
-      <h2 class="h2 section-title">GITHUB STATS</h2>
-     HTML -->
-        <div id="github-stats">
-          <!-- GitHub Stats will be displayed here -->
-        </div>
-
+    <p class="section-subtitle">Github info</p>
+    <h2 class="h2 section-title">GITHUB STATS</h2>
+    <div id="github-stats"></div>
   </div>
- 
-</div>
 </section>
 
       <!-- 
@@ -1011,37 +1016,323 @@ Core. Proficient in building RESTful APIs, optimizing database performance, and 
   <!-- 
     - ionicon link
   -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-</body>
+  <script type="module">
+    async function fetchGitHubStats() {
+      try {
+        const [userRes, reposRes] = await Promise.all([
+          fetch('https://api.github.com/users/shodevR'),
+          fetch('https://api.github.com/users/shodevR/repos?sort=updated&per_page=100')
+        ]);
 
-</html>
-<script src="https://cdn.jsdelivr.net/npm/@octokit/core@5">
- 
-</script>
+        const user = await userRes.json();
+        const repos = await reposRes.json();
 
-<script>
-  // JavaScript using Octokit
-  const octokit = new Octokit({ auth: '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' });
+        const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+        const totalForks = repos.reduce((sum, repo) => sum + repo.forks_count, 0);
+        
+        const topLanguages = repos
+          .filter(r => r.language)
+          .reduce((acc, r) => {
+            acc[r.language] = (acc[r.language] || 0) + 1;
+            return acc;
+          }, {});
+        const sortedLanguages = Object.entries(topLanguages)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5);
+        const totalLangRepos = repos.filter(r => r.language).length;
 
-async function fetchGitHubStats() {
-    try {
-        const { data: contributionsCalendar } = await octokit.rest.activity.getAuthenticatedUserContributionCalendar();
-        displayContributionsCalendar(contributionsCalendar);
-    } catch (error) {
-        console.error('Error fetching GitHub stats:', error);
+        const container = document.getElementById('github-stats');
+        container.innerHTML = `
+          <div class="github-stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">📚</div>
+              <div class="stat-value">${user.public_repos}</div>
+              <div class="stat-name">Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="stat-value">${totalStars}</div>
+              <div class="stat-name">Stars</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🍴</div>
+              <div class="stat-value">${totalForks}</div>
+              <div class="stat-name">Forks</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-value">${user.followers}</div>
+              <div class="stat-name">Followers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🙋</div>
+              <div class="stat-value">${user.following}</div>
+              <div class="stat-name">Following</div>
+            </div>
+          </div>
+          <div class="languages-section">
+            <h4>Top Languages</h4>
+            <div class="language-bars">
+              ${sortedLanguages.map(([lang, count]) => `
+                <div class="language-item">
+                  <span class="lang-name">${lang}</span>
+                  <div class="lang-bar"><div class="lang-fill" style="width: ${(count / totalLangRepos) * 100}%"></div></div>
+                  <span class="lang-count">${count}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        // Animate after content loads
+        setTimeout(() => {
+          document.querySelectorAll('.stat-card').forEach((card, i) => {
+            gsap.to(card, {
+              scrollTrigger: { trigger: card, start: 'top 90%' },
+              opacity: 1, y: 0, scale: 1, duration: 0.5, delay: i * 0.1, ease: 'back.out(1.7)'
+            });
+          });
+          gsap.to('.languages-section', {
+            scrollTrigger: { trigger: '.languages-section', start: 'top 90%' },
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+          });
+        }, 100);
+
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('github-stats').innerHTML = '<p>Unable to load GitHub stats - check console</p>';
+      }
     }
-}
 
-function displayContributionsCalendar(contributionsCalendar) {
-    const calendarImage = document.createElement('img');
-    calendarImage.src = contributionsCalendar.url;
-    document.getElementById('github-stats').appendChild(calendarImage);
-}
-</script>
+    fetchGitHubStats();
+  </script>
 
-<script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero section animation
+    gsap.to('.hero .hero-banner', {
+      scrollTrigger: { trigger: '.hero', start: 'top 80%' },
+      opacity: 1, x: 0, rotate: 0, duration: 1, ease: 'power3.out'
+    });
+    gsap.to('.hero .hero-content', {
+      scrollTrigger: { trigger: '.hero', start: 'top 80%' },
+      opacity: 1, x: 0, duration: 1, delay: 0.3, ease: 'power3.out'
+    });
+
+    // Section titles
+    document.querySelectorAll('.section-subtitle, .section-title').forEach(el => {
+      gsap.to(el, {
+        scrollTrigger: { trigger: el, start: 'top 85%' },
+        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+      });
+    });
+
+    // Timeline items
+    document.querySelectorAll('.timeline-item').forEach((item, i) => {
+      gsap.to(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 1, x: 0, duration: 0.6, delay: i * 0.1, ease: 'power3.out'
+      });
+    });
+
+    // Skills items
+    document.querySelectorAll('.skillss-item').forEach((item, i) => {
+      gsap.to(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 1, x: 0, duration: 0.5, delay: i * 0.08, ease: 'power3.out'
+      });
+    });
+
+    // Project cards
+    document.querySelectorAll('.project-card').forEach((card, i) => {
+      gsap.to(card, {
+        scrollTrigger: { trigger: card, start: 'top 90%' },
+        opacity: 1, y: 0, scale: 1, duration: 0.6, delay: i * 0.15, ease: 'power3.out'
+      });
+    });
+
+    // Contact items
+    document.querySelectorAll('.contact-item').forEach((item, i) => {
+      gsap.to(item, {
+        scrollTrigger: { trigger: item, start: 'top 90%' },
+        opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out'
+      });
+    });
+
+    // Parallax effect on hero
+    gsap.to('.hero', {
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 },
+      y: 100
+    });
+
+    // Smooth reveal for sections
+    document.querySelectorAll('section').forEach(section => {
+      gsap.from(section, {
+        scrollTrigger: { trigger: section, start: 'top 90%' },
+        opacity: 0, y: 50, duration: 0.8, ease: 'power3.out'
+      });
+    });
+  </script>
+
+  <!-- Custom Cursor -->
+  <script>
+    const cursor = document.querySelector('.cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    let dotX = 0, dotY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+      cursorX += (mouseX - cursorX) * 0.15;
+      cursorY += (mouseY - cursorY) * 0.15;
+      dotX += (mouseX - dotX) * 0.35;
+      dotY += (mouseY - dotY) * 0.35;
+
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      cursorDot.style.left = dotX + 'px';
+      cursorDot.style.top = dotY + 'px';
+
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Hover effects
+    const hoverElements = document.querySelectorAll('a, button, .project-card, .stat-card, input, textarea');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hovered');
+        cursorDot.classList.add('hovered');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hovered');
+        cursorDot.classList.remove('hovered');
+      });
+    });
+  </script>
+
+  <!-- Interactive Background -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: null, y: null };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.color = `rgba(255, 107, 53, ${Math.random() * 0.5 + 0.1})`;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+        if (mouse.x !== null) {
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            this.x -= dx * 0.02;
+            this.y -= dy * 0.02;
+          }
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 80; i++) {
+      particles.push(new Particle());
+    }
+
+    canvas.addEventListener('mousemove', (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      // Draw connections
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 107, 53, ${0.15 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        });
+      });
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <!-- Theme Toggle -->
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeIcon.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      themeIcon.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+
+  <script>
   const form = document.getElementById("contact-form");
   const popup = document.getElementById("popup");
   const popupMessage = document.getElementById("popup-message");
@@ -1093,3 +1384,6 @@ function displayContributionsCalendar(contributionsCalendar) {
     }
   });
 </script>
+
+</body>
+</html>
